@@ -24,14 +24,16 @@ from translate.storage import base, markdown
 
 class TestMarkdownTranslationUnitExtraction:
     """
-    Test cases based on the [Commonmark
+    Test cases based on examples from the [Commonmark
     specification](https://spec.commonmark.org/0.29/), focusing on the
     extraction of translation units.
 
-    The priorities are:
-    1. Extract all content relevant for translation.
-    2. Keep paragraphs together in the translation units.
+    These are the principles for extraction:
+    1. Extract all content relevant for translation, at the cost of also
+       including some formatting.
+    2. One translation unit per paragraph.
     3. Keep formatting out of the translation units as much as possible.
+    4. Avoid HTML entities in the translation units. Rely on Unicode instead.
 
     White space within translation units is normalized but hard line breaks are
     preserved. This is because the PO format does not preserve white space, and
